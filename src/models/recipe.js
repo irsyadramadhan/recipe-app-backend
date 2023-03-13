@@ -15,6 +15,7 @@ const selectData = (value) => {
     )
 }
 
+// select data by user id
 const selectDataById = (value) => {
     let {searchBy, search, sortBy, sort, limit, id} = value
     return Pool.query(
@@ -50,4 +51,17 @@ const deleteData = (id, by_user_id) => { // <--- add variable by_user_id
     )
 }
 
-module.exports = {selectData, insertData, updateData, deleteData, selectDataById}
+// select data by recipe id
+const selectByRecipeId = (id) => {
+    return Pool.query(
+        `SELECT recipe.id, recipe.title, recipe.image, recipe_category.name AS category, recipe.ingredient, users.fullname AS creator, recipe.time_create
+        FROM recipe
+        JOIN recipe_category
+        ON recipe.category_id = recipe_category.id
+        JOIN users
+        ON recipe.by_user_id = users.id
+        WHERE recipe.isdelete IS NULL AND recipe.id = ${id}`
+    )
+}
+
+module.exports = {selectData, insertData, updateData, deleteData, selectDataById, selectByRecipeId}

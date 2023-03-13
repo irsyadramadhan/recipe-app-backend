@@ -1,4 +1,4 @@
-const {selectData, selectDataById, insertData, updateData, deleteData} = require('./../models/recipe')
+const {selectData, selectDataById, insertData, updateData, deleteData, selectByRecipeId} = require('./../models/recipe')
 const cloudinary = require('../config/images')
 
 const recipeController = {
@@ -13,8 +13,8 @@ const recipeController = {
         data.ingredient = req.body.ingredient
         data.image = imageUrl.secure_url
         data.by_user_id = req.payload.id // <---
-        let results = await insertData(data)
-        if (!results) {
+        let result = await insertData(data)
+        if (!result) {
             res.status(400).json({status: 400, message: "insert data failed"})
         }else{
             res.status(200).json({status: 200, message: "insert data success"})
@@ -63,8 +63,8 @@ const recipeController = {
         let image = imageUrl.secure_url
         let by_user_id = req.payload.id // <--- here
         let data = {title, ingredient, image, category_id, by_user_id} // <-- here
-        let results = await updateData(id, data)
-        if (!results) {
+        let result = await updateData(id, data)
+        if (!result) {
             res.status(400).json({status: 400, message: "update data failed"})
         }else{
             res.status(200).json({status: 200, message: "update data success"})
@@ -78,6 +78,15 @@ const recipeController = {
             res.status(400).json({status: 400, message: "delete data failed"})
         }else{
             res.status(200).json({status: 200, message: "delete data success"})
+        }
+    },
+    getByRecipeId: async (req, res, next) => {
+        let id = req.params.id
+        let result = await selectByRecipeId(id)
+        if (!result) {
+            res.status(400).json({status: 400, message: "get data failed"})
+        } else {
+            res.status(200).json({status: 200, message: "get data success", result: result.rows})
         }
     }
 }
