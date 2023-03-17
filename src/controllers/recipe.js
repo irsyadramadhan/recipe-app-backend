@@ -29,11 +29,11 @@ const recipeController = {
             sort: sort || 'ASC',
             limit: limit || 30
         }
-        let results = await selectData(data)
-        if (!results) {
+        let result = await selectData(data)
+        if (!result) {
             res.status(400).json({status: 400, message: "get data failed"})
         }else{
-            res.status(200).json({status: 200, message: "get data success", results: results.rows})
+            res.status(200).json({status: 200, message: "get data success", data: result.rows})
         }
     },
     getRecipeById: async (req, res, next) => {
@@ -46,11 +46,11 @@ const recipeController = {
             limit: limit || 30,
             id: req.payload.id
         }
-        let results = await selectDataById(data)
-        if (!results) {
+        let result = await selectDataById(data)
+        if (!result) {
             res.status(400).json({status: 400, message: "get data failed"})
         }else{
-            res.status(200).json({status: 200, message: "get data success", results: results.rows})
+            res.status(200).json({status: 200, message: "get data success", data: result.rows})
         }
     },
     putRecipe: async (req, res, next) => {
@@ -86,7 +86,7 @@ const recipeController = {
         if (!result) {
             res.status(400).json({status: 400, message: "get data failed"})
         } else {
-            res.status(200).json({status: 200, message: "get data success", result: result.rows})
+            res.status(200).json({status: 200, message: "get data success", data: result.rows})
         }
     }
 }
