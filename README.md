@@ -1,6 +1,6 @@
 # be-recipe-app
 
-is a backend applications that serve resources to recipe app
+Backend application that provides resources for the recipe-app and the recipe-app-mobile.
 
 ## Tech Stack
 - Node JS
@@ -23,8 +23,8 @@ is a backend applications that serve resources to recipe app
 ## Features
 - CRUD
 - File Upload
-- Authentication / User Log In
-- Authorization / Private Routes
+- Authentication / User Login
+- Authorization
 
 ## Env Variables
 - DB_USER
@@ -39,3 +39,84 @@ is a backend applications that serve resources to recipe app
 - IMAGE_SECRET
 
 ## API References
+
+### Register User
+
+> POST /auth/register
+
+Request Body:
+| Key | Value |
+| ----------- | ----------- |
+| email | user email |
+| password | user password |
+| fullname | user full name |
+
+### Login
+
+> POST /auth/login
+
+Request Body:
+| Key | Value |
+| ----------- | ----------- |
+| email | user email |
+| password | user password |
+
+### Get All Recipe
+
+> GET /recipe
+
+### Get Recipe by ID
+
+> GET /recipe/:id
+
+### Get User's Recipe
+
+> GET /recipe/myrecipe
+
+Authorization:
+| Key | Value |
+| ----------- | ----------- |
+| bearer token | user token |
+
+### Insert Recipe
+
+> POST /recipe
+
+Authorization:
+| Key | Value |
+| ----------- | ----------- |
+| bearer token | user token |
+
+Request Body:
+| Key | Value |
+| ----------- | ----------- |
+| title | recipe title |
+| category_id | recipe category id |
+| ingredient | recipe ingredient |
+| image | recipe image |
+
+### Update Recipe
+
+> PUT /recipe/:id
+
+Authorization:
+| Key | Value |
+| ----------- | ----------- |
+| bearer token | user token |
+
+Request Body:
+| Key | Value |
+| ----------- | ----------- |
+| title | recipe title |
+| category_id | recipe category id |
+| ingredient | recipe ingredient |
+| image | recipe image |
+
+### Delete Recipe
+
+> DELETE /recipe/:id
+
+Authorization:
+| Key | Value |
+| ----------- | ----------- |
+| bearer token | user token |
