@@ -1,6 +1,6 @@
 # recipe-app-backend
 
-Backend application that provides resources for the recipe-app and the recipe-mobile.
+Backend application for recipe-app and recipe-mobile.
 
 ## Tech Stack
 - Node JS
