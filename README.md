@@ -48,7 +48,7 @@ Request Body:
 | Key | Value |
 | ----------- | ----------- |
 | email | user email |
-| password | user password |
+| password | password |
 | fullname | user full name |
 
 ### Login
