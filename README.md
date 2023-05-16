@@ -1,4 +1,4 @@
-# recipe-app
+# recipe-app-backend
 
 Backend application that provides resources for the recipe-app and the recipe-mobile.
 
